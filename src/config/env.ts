@@ -14,13 +14,13 @@ const envSchema = z.object({
     .enum(["development", "production", "test"])
     .default("development"),
   PORT: z.string().default("3000"),
+  FRONT_END_URL: z.string().url().default("http://localhost:3000"),
 });
 
 type Env = z.infer<typeof envSchema>;
 
 function validateEnv(): Env {
   try {
-    console.log("-------------------------------", process.env);
     return envSchema.parse(process.env);
   } catch (error) {
     if (error instanceof z.ZodError) {
