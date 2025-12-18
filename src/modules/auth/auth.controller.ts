@@ -1,6 +1,7 @@
+import { sendOTPEmail } from "@/lib/email.service";
 import { Request, Response, NextFunction } from "express";
 
-export const studentSignup = (
+export const studentSignup = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -12,6 +13,8 @@ export const studentSignup = (
     );
     console.log("Student Signup route accessed");
 
+    await sendOTPEmail({ to: req.body.email, otp: 123456 });
+
     res.status(200).json({ message: "Student Signup" });
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -21,4 +24,4 @@ export const studentSignup = (
       res.status(500).json({ message: "Internal Server Error" });
     }
   }
-};  
+};

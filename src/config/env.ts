@@ -16,6 +16,8 @@ const envSchema = z.object({
   PORT: z.string().default("3000"),
   FRONT_END_URL: z.string().url().default("http://localhost:3000"),
   MONGO_DB_CONNECTION_STRING: z.string(),
+  EMAIL_USER: z.string(),
+  EMAIL_PASS: z.string(),
 });
 
 type Env = z.infer<typeof envSchema>;
