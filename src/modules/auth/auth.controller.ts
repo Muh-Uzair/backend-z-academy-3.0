@@ -6,6 +6,10 @@ export const studentSignup = (
   next: NextFunction
 ) => {
   try {
+    console.log(
+      "request body ----------------------------------------------------\n",
+      req.body
+    );
     console.log("Student Signup route accessed");
 
     res.status(200).json({ message: "Student Signup" });
@@ -17,4 +21,4 @@ export const studentSignup = (
       res.status(500).json({ message: "Internal Server Error" });
     }
   }
-};
+};  

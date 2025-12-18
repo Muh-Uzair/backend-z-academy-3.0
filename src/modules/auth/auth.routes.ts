@@ -5,6 +5,6 @@ const router: Router = express.Router();
 
 // /api/v1/auth
 
-router.post("/signup/student", studentSignup);
+router.route("/signup/student").post(studentSignup);
 
 export default router;
