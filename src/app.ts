@@ -29,7 +29,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       console.log("Database connection successful");
       next();
     })
-    .catch((err) => {
+    .catch((err) => { 
       console.error("Database connection error:", err);
       res.status(500).json({ message: "Error connecting to mongodb" });
     });
