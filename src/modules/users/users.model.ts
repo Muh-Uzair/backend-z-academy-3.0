@@ -5,11 +5,12 @@ import type { UserRoles } from "./users.types"; // Type import for TS safety (un
 // Interface for TS (extend Document for Mongoose)
 // Yeh mein UserRoles type use kar raha hun taake role field ki type safety ho
 export interface IUser extends Document {
-  fullName: string;
   email: string;
   password: string; // Hashed password
   role: UserRoles; // Yeh union type use karo
   isEmailVerified: boolean;
+  otp: number | null;
+  otpExpiry: Date | null;
   createdAt: Date;
   updatedAt: Date;
   // Add more fields later if needed
@@ -18,12 +19,6 @@ export interface IUser extends Document {
 // Mongoose Schema (Zod se match karte fields)
 const userSchema = new Schema<IUser>(
   {
-    fullName: {
-      type: String,
-      required: true,
-      minlength: 2,
-      maxlength: 100,
-    },
     email: {
       type: String,
       required: true,
@@ -44,6 +39,16 @@ const userSchema = new Schema<IUser>(
     isEmailVerified: {
       type: Boolean,
       default: false,
+    },
+    otp: {
+      type: Number,
+      min: 100000,
+      max: 999999,
+      default: null,
+    },
+    otpExpiry: {
+      type: Date,
+      default: null, // 10 minutes
     },
   },
   {

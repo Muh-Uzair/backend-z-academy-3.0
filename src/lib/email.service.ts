@@ -19,14 +19,14 @@ export const sendOTPEmail = async ({ to, otp }: SendOTPEmailOptions) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Your OTP Code</title>
       </head>
-      <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: Arial, sans-serif;">
-        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f4; padding: 20px;">
+      <body style="margin: 0; padding: 0; background-color: #dcfce7; font-family: Arial, sans-serif;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #dcfce7; padding: 20px;">
           <tr>
             <td align="center">
               <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                 <!-- Header -->
                 <tr>
-                  <td style="background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 30px; text-align: center;">
+                  <td style="background: linear-gradient(135deg, #059669, #059669); padding: 30px; text-align: center;">
                     <h1 style="color: white; margin: 0; font-size: 28px;">zAcademy</h1>
                     <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0; font-size: 16px;">Learn. Grow. Succeed.</p>
                   </td>
@@ -43,8 +43,8 @@ export const sendOTPEmail = async ({ to, otp }: SendOTPEmailOptions) => {
                     <!-- OTP Box -->
                     <div style="
                       display: inline-block;
-                      background-color: #f8fafc;
-                      border: 2px dashed #6366f1;
+                      background-color: #dcfce7;
+                      border: 2px dashed #059669;
                       border-radius: 12px;
                       padding: 20px 40px;
                       margin: 20px 0;
@@ -73,8 +73,8 @@ export const sendOTPEmail = async ({ to, otp }: SendOTPEmailOptions) => {
                   <td style="background-color: #f1f5f9; padding: 20px; text-align: center; font-size: 13px; color: #64748b;">
                     <p style="margin: 0;">© 2025 zAcademy. All rights reserved.</p>
                     <p style="margin: 10px 0 0;">
-                      <a href="#" style="color: #6366f1; text-decoration: none;">Unsubscribe</a> • 
-                      <a href="#" style="color: #6366f1; text-decoration: none;">Privacy Policy</a>
+                      <a href="#" style="color: #059669; text-decoration: none;">Unsubscribe</a> • 
+                      <a href="#" style="color: #059669; text-decoration: none;">Privacy Policy</a>
                     </p>
                   </td>
                 </tr>
