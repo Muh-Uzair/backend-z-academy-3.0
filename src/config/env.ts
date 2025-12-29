@@ -18,13 +18,25 @@ const envSchema = z.object({
   MONGO_DB_CONNECTION_STRING: z.string(),
   EMAIL_USER: z.string(),
   EMAIL_PASS: z.string(),
+  ACCESS_TOKEN_SECRET: z
+    .string()
+    .min(32, "ACCESS_TOKEN_SECRET must be at least 32 characters"),
+  REFRESH_TOKEN_SECRET: z
+    .string()
+    .min(32, "ACCESS_TOKEN_SECRET must be at least 32 characters"),
+  ACCESS_TOKEN_EXPIRY: z.number().default(54000000),
+  REFRESH_TOKEN_EXPIRY: z.number().default(604800000),
 });
 
 type Env = z.infer<typeof envSchema>;
 
 function validateEnv(): Env {
   try {
-    return envSchema.parse(process.env);
+    return envSchema.parse({
+      ...process.env,
+      ACCESS_TOKEN_EXPIRY: Number(process.env.ACCESS_TOKEN_EXPIRY),
+      REFRESH_TOKEN_EXPIRY: Number(process.env.REFRESH_TOKEN_EXPIRY),
+    });
   } catch (error) {
     if (error instanceof z.ZodError) {
       const errorMessages = error.issues

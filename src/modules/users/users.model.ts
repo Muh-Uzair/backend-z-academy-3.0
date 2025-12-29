@@ -1,6 +1,7 @@
 import { Schema, model, Document } from "mongoose";
 import { UserRoleEnum } from "./users.zod.schema"; // Zod enum object import for values
 import type { UserRoles } from "./users.types"; // Type import for TS safety (union type)
+import { env } from "@/config/env";
 
 // Interface for TS (extend Document for Mongoose)
 // Yeh mein UserRoles type use kar raha hun taake role field ki type safety ho
@@ -11,6 +12,12 @@ export interface IUser extends Document {
   isEmailVerified: boolean;
   otp: number | null;
   otpExpiry: Date | null;
+  refreshTokens: [
+    {
+      token: string | null;
+      refreshCreatedAt: Date | null;
+    }
+  ];
   createdAt: Date;
   updatedAt: Date;
   // Add more fields later if needed
@@ -25,6 +32,7 @@ const userSchema = new Schema<IUser>(
       unique: true,
       lowercase: true,
       match: [/\S+@\S+\.\S+/, "Invalid email format"], // Basic regex, but Zod pe full rely karo
+      trim: true,
     },
     password: {
       type: String,
@@ -50,6 +58,16 @@ const userSchema = new Schema<IUser>(
       type: Date,
       default: null, // 10 minutes
     },
+    refreshTokens: [
+      {
+        token: { type: String, required: true, default: null }, // Hashed refresh token
+        refreshCreatedAt: {
+          type: Date,
+          default: null,
+          expires: env.REFRESH_TOKEN_EXPIRY,
+        },
+      },
+    ],
   },
   {
     timestamps: true, // Auto createdAt/updatedAt

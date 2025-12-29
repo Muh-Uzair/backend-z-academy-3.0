@@ -4,6 +4,7 @@ import cors from "cors";
 import { env } from "./config/env";
 import morgan from "morgan";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(
   })
 );
 
+app.use(cookieParser());
+
 // mongodb connection
 app.use((req: Request, res: Response, next: NextFunction) => {
   mongoose
@@ -29,7 +32,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
       console.log("Database connection successful");
       next();
     })
-    .catch((err) => { 
+    .catch((err) => {
       console.error("Database connection error:", err);
       res.status(500).json({ message: "Error connecting to mongodb" });
     });
