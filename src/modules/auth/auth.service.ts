@@ -14,7 +14,7 @@ import {
   generateOtp,
   generateRefreshToken,
   storeRefreshToken,
-} from "@/utils/auth.utils";
+} from "@/modules/auth/auth.utils";
 import jwt from "jsonwebtoken";
 import { env } from "@/config/env";
 
